@@ -1,13 +1,20 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import { saveBook } from './controllers/book.controller.js';
 dotenv.config();
 
 const app = express();
 
+// Middleware for parsing request body
+app.use(express.json());
+
 app.get('/', (req, res) => {
     res.status(234).send('Welcome to MERN Stack');
 })
+
+// Route for Saving a new Book
+app.post('/books', saveBook)
 
 mongoose
     .connect(process.env.mongoDBURL)
