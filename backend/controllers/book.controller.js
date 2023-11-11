@@ -19,3 +19,13 @@ export const saveBook = async (req, res) => {
         console.log(error);
     }
 }
+
+export const getBooks = async (req, res) => {
+    try {
+        const books = await Book.find({});
+
+        return res.status(200).json(books);
+    } catch (error) {
+        console.log(error);
+    }
+}
