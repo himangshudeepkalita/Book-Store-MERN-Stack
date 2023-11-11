@@ -1,7 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import { getBooks, getOneBook, saveBook, updateBook } from './controllers/book.controller.js';
+import { deleteBook, getBooks, getOneBook, saveBook, updateBook } from './controllers/book.controller.js';
 dotenv.config();
 
 const app = express();
@@ -24,6 +24,9 @@ app.get('/books/:id', getOneBook)
 
 // Route for Updating a Book
 app.put('/books/:id', updateBook)
+
+// Route for Deleting a Book
+app.delete('/books/:id', deleteBook)
 
 mongoose
     .connect(process.env.mongoDBURL)

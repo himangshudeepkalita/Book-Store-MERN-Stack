@@ -48,7 +48,7 @@ export const updateBook = async (req, res) => {
         if( !req.body.title || !req.body.author || !req.body.publishYear ) {
             return res.status(400).send({ message: 'Send all required fields: title, author, publishYear'})
         }
-        
+
         const { id } = req.params;
         
         const result = await Book.findByIdAndUpdate(id, req.body);
@@ -58,6 +58,22 @@ export const updateBook = async (req, res) => {
         }
         
         return res.status(200).json({ message: 'Book updated successfully!' });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const deleteBook = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const result = await Book.findByIdAndDelete(id);
+
+        if(!result) {
+            return res.status(404).json({ message: 'Book not found!' });
+        }
+
+        return res.status(200).send({ message: 'Book deleted successfully!' });
     } catch (error) {
         console.log(error);
     }
