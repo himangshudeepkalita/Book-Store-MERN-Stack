@@ -1,7 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import { getBooks, saveBook } from './controllers/book.controller.js';
+import { getBooks, getOneBook, saveBook } from './controllers/book.controller.js';
 dotenv.config();
 
 const app = express();
@@ -18,6 +18,9 @@ app.post('/books', saveBook)
 
 // Route for Getting All Books from database
 app.get('/books', getBooks)
+
+// Route for Getting One Book from database by id
+app.get('/books/:id', getOneBook)
 
 mongoose
     .connect(process.env.mongoDBURL)

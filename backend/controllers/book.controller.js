@@ -29,3 +29,15 @@ export const getBooks = async (req, res) => {
         console.log(error);
     }
 }
+
+export const getOneBook = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const book = await Book.findById(id);
+
+        return res.status(200).json(book);
+    } catch (error) {
+        console.log(error);
+    }
+}
