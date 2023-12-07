@@ -25,9 +25,9 @@ app.use(cors());
 //     })
 // )
 
-app.get('/', (req, res) => {
-    res.status(234).send('Welcome to MERN Stack');
-})
+// app.get('/', (req, res) => {
+//     res.status(234).send('Welcome to MERN Stack');
+// })
 
 app.use('/books', bookRoute);
 
