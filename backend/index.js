@@ -3,7 +3,10 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import bookRoute from './routes/book.route.js';
 import cors from 'cors';
+import path from 'path';
 dotenv.config();
+
+const __dirname = path.resolve();
 
 const app = express();
 
@@ -27,6 +30,12 @@ app.get('/', (req, res) => {
 })
 
 app.use('/books', bookRoute);
+
+app.use(express.static(path.join(__dirname, '/frontend/dist')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'dist', 'index.html'));
+})
 
 mongoose
     .connect(process.env.mongoDBURL)
